@@ -12,3 +12,102 @@
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
+
+@keyframes arrow {
+  from {
+    translate: 0;
+  }
+
+  to {
+    translate: 4px;
+  }
+}
+
+.sparks {
+  opacity: 0;
+}
+
+.core {
+  transition: fill 0.3s 0.03s linear;
+}
+
+.main-body {
+  transition: fill 0.3s linear;
+}
+
+.card__icon-button:hover .core {
+  fill: var(--heart-contour-color, #000);
+  transition: fill 0.3s linear;
+}
+
+.card__icon-button:hover .main-body {
+  fill: var(--heart-contour-color, #000);
+  transition: fill 0.3s 0.05s linear;
+}
+
+.card__icon-button:active .core {
+  fill: var(--heart-sparks-color, #f00);
+  transition: fill 0.3s linear;
+}
+
+.card__icon-button:active .main-body {
+  fill: var(--heart-sparks-color, #f00);
+  transition: fill 0.3s 0.05s linear;
+}
+
+.contour {
+  transition: fill 0.1s linear;
+}
+
+.like-icon.is-liked .core {
+  fill: var(--heart-sparks-color, #f00);
+  transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--heart-sparks-color, #f00);
+  transition: fill 0.3s 0.05s linear;
+}
+
+.like-icon.is-liked .contour {
+  fill: var(--heart-sparks-color, #f00);
+  transition: fill 0.3s 0.06s linear;
+}
+
+.like-icon.is-liked .heart {
+  transform-origin: center;
+  animation: heart-boom 0.3s 0.1s ease-in alternate;
+}
+
+@keyframes heart-boom {
+  from {
+    scale: 1;
+  }
+
+  50% {
+    scale: 1.5;
+  }
+
+  to {
+    scale: 1;
+  }
+}
+
+.like-icon.is-liked .sparks {
+  transform-origin: center;
+  animation: sparks-boom 0.3s 0.3s ease-in alternate;
+}
+
+@keyframes sparks-boom {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

@@ -46,26 +46,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--accent-font, 'PressStart2P'), monospace;
+  font-family: var(--accent-font, 'PressStart2P'), fantasy;
   text-align: center;
   background-color: var(--bg-color, #fff);
 }
 
 .header__title {
-  margin-block-start: clamp(120px, 100vi * 16 / 1065 + 136px - 1440px * 16 / 1065, 136px);
+  padding-block-start: clamp(115px, 100vi * 21 / 1065 + 136px - 1440px * 21 / 1065, 136px);
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vi, 4.0625rem);
+  text-transform: uppercase;
 }
 
-.header__text {
-  margin: 20px 0 25px 0;
-  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+.header__subtitle {
+  padding-block-start: 19px;
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vi, 1.4375rem);
   text-transform: uppercase;
+}
+
+.theme-menu {
+  padding-inline-start: 18px;
+  padding-block-start: 15px;
+}
+
+@media (width <= 375px) {
+  .header__subtitle {
+    padding-block-start: 16px;
+  }
+  
+  .theme-menu {
+    padding-inline-start: 20px;
+  }
 }
 
 .theme-menu__list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 6px;
   align-items: flex-start;
 }
 
@@ -73,36 +89,29 @@
   position: relative;
   padding: 0;
   border: none;
+  font-size: 14px;
+  text-transform: uppercase;
   background-color: transparent;
   cursor: pointer;
   appearance: none;
   transition: opacity 0.3s;
 }
 
-.theme-menu__button:hover,
-.theme-menu__button:disabled {
+.theme-menu__button:hover {
   opacity: 0.6;
 }
 
 .theme-menu__button:disabled {
+  opacity: 0.6;
   pointer-events: none;
 }
 
 .theme-menu__button:disabled::before {
   content: '▶';
   position: absolute;
-  inset-inline-start: -22px;
+  inset-inline-start: -20px;
+  inset-block-start: 1px;
   animation: arrow 0.5s infinite ease-in-out alternate;
-}
-
-@keyframes arrow {
-  from {
-    translate: 0;
-  }
-
-  to {
-    translate: 4px;
-  }
 }
 
 .theme-menu__button:focus,
@@ -117,7 +126,7 @@
   border-block-end: 2px solid currentColor;
   inline-size: 100%;
   inset-inline-start: 0;
-  inset-block-end: 0;
+  inset-block-end: -2px;
   transform: scale(0);
   transform-origin: left;
   transition: transform 0.3s;
@@ -139,14 +148,15 @@
 }
 
 .card__title {
-  padding: 4px 5px;
-  border-block-end: 2px solid currentColor;
+  padding: 4px 10px;
   font-size: 18px;
   font-variation-settings: 'wght' var(--accent-font-wght, 700);
 }
 
 .card__notion {
   position: relative;
+  border-block-start: 2px solid currentColor;
+  border-block-end: 2px solid currentColor;
 }
 
 .card__label {
@@ -154,7 +164,7 @@
   z-index: 1;
   inset-inline-end: 25px;
   inset-block-start: 25px;
-  font-family: var(--accent-font, 'PressStart2P'), monospace;
+  font-family: var(--accent-font, 'PressStart2P'), fantasy;
   font-size: 14px;
   text-transform: uppercase;
   mix-blend-mode: hard-light;
@@ -189,48 +199,43 @@
   object-position: center;
 }
 
-.filter-s1-begin {
+.filter-sepia {
   filter: sepia(0.7);
 }
 
-.filter-s1-end {
+.filter-grayscale {
   filter: grayscale(100%);
 }
 
-.filter-s2-begin {
+.filter-brightness-and-contrast {
   filter: brightness(80%) contrast(200%);
 }
 
-.filter-s2-end {
+.filter-hue-rotate {
   filter: hue-rotate(45deg);
 }
 
-.filter-s3-begin {
+.filter-invert {
   filter: invert(100%);
 }
 
-.filter-s3-end {
+.filter-brightness {
   filter: brightness(150%);
 }
 
-.filter-now {
+.filter-saturate-and-blur {
   filter: saturate(300%) blur(10px);
 }
 
 .card__memory-text {
-  padding: 25px 25px 2px 25px;
-  border-block-start: 2px solid currentColor;
-}
-
-.card__memory-quote {
-  padding: 25px;
+  margin: 25px;
 }
 
 .card__like-buttons {
   margin: 0 25px 25px 25px;
   display: flex;
   justify-content: flex-end;
-  gap: 6px;
+  gap: 5px;
 }
 
 .card__icon-button {
@@ -246,96 +251,11 @@
   display: block;
 }
 
-.sparks {
-  opacity: 0;
-}
-
-.core {
-  transition: fill 0.03s;
-}
-
-.main-body {
-  transition: fill 0.3s;
-}
-
-.card__icon-button:hover .core {
-  fill: var(--heart-contour-color, #000);
-  transition: fill 0.3s;
-}
-
-.card__icon-button:hover .main-body {
-  fill: var(--heart-contour-color, #000);
-  transition: fill 0.3s 0.05s;
-}
-
-.card__icon-button:active .core {
-  fill: var(--heart-sparks-color, #f00);
-  transition: fill 0.3s;
-}
-
-.card__icon-button:active .main-body {
-  fill: var(--heart-sparks-color, #f00);
-  transition: fill 0.3s 0.05s;
-}
-
-.contour {
-  transition: fill 0.1s;
-}
-
-.like-icon.is-liked .contour {
-  transition: fill 0.3s 0.06s;
-  fill: var(--heart-sparks-color, #f00);
-}
-
-.like-icon.is-liked .core,
-.like-icon.is-liked .main-body {
-  fill: var(--heart-sparks-color, #f00);
-  transition: fill 0.3s;
-}
-
-.like-icon.is-liked .heart {
-  transform-origin: center;
-  animation: heart-boom 0.3s 0.1s ease-in;
-}
-
-@keyframes heart-boom {
-  from {
-    scale: 1;
-  }
-
-  50% {
-    scale: 1.5;
-  }
-
-  to {
-    scale: 1;
-  }
-}
-
-.like-icon.is-liked .sparks {
-  transform-origin: center;
-  animation: sparks-boom 0.3s 0.3s ease-in;
-}
-
-@keyframes sparks-boom {
-  from {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
 .button {
   position: relative;
   border: 2px solid currentColor;
   background-color: transparent;
-  font-family: var(--accent-font, 'PressStart2P'), monospace;
+  font-family: var(--accent-font, 'PressStart2P'), fantasy;
   font-size: 14px;
   line-height: 90%; /* 12.6px */
   cursor: pointer;
@@ -392,12 +312,9 @@
   background-color: var(--bg-color, #fff);
 }
 
-@media (width <= 375px) {
-  .save-button {
-    min-inline-size: 306px;
-    min-block-size: 80px;
-    flex-direction: column;
-  }
+.button__text .floppy-svg {
+  inline-size: 21px;
+  block-size: 21px;
 }
 
 .dialog {
@@ -411,7 +328,23 @@
   background-color: var(--bg-color, #fff);
 }
 
+.dialog .floppy-svg {
+  inline-size: 40px;
+  block-size: 40px;
+}
+
 @media (width <= 375px) {
+  .save-button {
+    min-inline-size: 306px;
+    min-block-size: 80px;
+    flex-direction: column;
+  }
+
+  .button__text .floppy-svg {
+    inline-size: 28px;
+    block-size: 28px;
+  }
+
   .dialog {
     max-inline-size: 341px;
     padding: 30px 40px;
@@ -428,7 +361,7 @@
 }
 
 .dialog__text {
-  font-family: var(--accent-font, 'PressStart2P'), monospace;
+  font-family: var(--accent-font, 'PressStart2P'), fantasy;
   font-size: 14px;
   line-height: 150%; /* 21px */
   text-transform: uppercase;
