@@ -8,8 +8,13 @@
   box-sizing: border-box;
 }
 
-body {
+body,
+blockquote {
   margin: 0;
+}
+
+button {
+  padding: 0;
 }
 
 h1,
