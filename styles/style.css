@@ -159,15 +159,6 @@
   text-transform: uppercase;
   mix-blend-mode: hard-light;
   opacity: 0.5;
-}
-
-@media (width <= 375px) {
-  .card__label {
-    inset-inline-end: 11px;
-  }
-}
-
-.card__label {
   text-shadow:
     -1px 0 var(--bg-color, #fff), 
     0 1px var(--bg-color, #fff), 
@@ -182,6 +173,12 @@
     text-shadow: none;
   }
 } 
+
+@media (width <= 375px) {
+  .card__label {
+    inset-inline-end: 11px;
+  }
+}
 
 .card__image {
   position: relative;
