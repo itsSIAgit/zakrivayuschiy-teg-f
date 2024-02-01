@@ -51,21 +51,32 @@
   background-color: var(--bg-color, #fff);
 }
 
-.header__title {
-  padding-block-start: clamp(115px, 100vi * 21 / 1065 + 136px - 1440px * 21 / 1065, 136px);
+/* 
+  Разница в высоте блока с текстом со шрифтом PressStart2P в Chrome и FireFox может составлять более 5px.
+  Также присутствует разница рендеринга положения по вертикали внутри самого блока.
+  Нейтрализовано при помощи display: block; и line-height: 1em;
+  После фикса, в FF лого и заголовок перестали прыгать при изменении ширины окна.
+*/
+
+.header__logo {
+  margin-block-start: clamp(120px, 100vi * 16 / 1065 + 136px - 1440px * 16 / 1065, 136px);
+  display: block;
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vi, 4.0625rem);
+  line-height: 1em;
   text-transform: uppercase;
 }
 
-.header__subtitle {
-  padding-block-start: 19px;
+.header__title {
+  margin-block-start: 20px;
+  display: block;
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vi, 1.4375rem);
+  line-height: 1em;
   text-transform: uppercase;
 }
 
 .theme-menu {
+  margin-block-start: 25px;
   padding-inline-start: 18px;
-  padding-block-start: 15px;
 }
 
 @media (width <= 375px) {
@@ -81,7 +92,7 @@
 .theme-menu__list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 14px;
   align-items: flex-start;
 }
 
@@ -89,7 +100,9 @@
   position: relative;
   padding: 0;
   border: none;
+  display: block;
   font-size: 14px;
+  line-height: 1em;
   text-transform: uppercase;
   background-color: transparent;
   cursor: pointer;
@@ -110,7 +123,7 @@
   content: '▶';
   position: absolute;
   inset-inline-start: -20px;
-  inset-block-start: 1px;
+  inset-block-start: 0;
   animation: arrow 0.5s infinite ease-in-out alternate;
 }
 
@@ -228,7 +241,12 @@
 }
 
 .card__memory-text {
-  margin: 25px;
+  padding: 25px;
+  line-height: 116%;
+}
+
+.card__memory-text :not(:last-child) {
+  margin-block-end: 27px;
 }
 
 .card__like-buttons {
